@@ -349,3 +349,62 @@ section { scroll-margin-top: 84px; }
 /* Optional: subtle image fade-in */
 .card img { transition: opacity .4s ease, transform .4s ease; }
 .card:hover img { transform: scale(1.01); }
+/* ===== Field Errors ===== */
+.field-error {
+  display: block;
+  margin-top: .35rem;
+  font-size: .9rem;
+  color: #b91c1c;
+  min-height: 1em;
+}
+input.error, textarea.error { border-color: #fca5a5; }
+
+/* ===== API Widget ===== */
+.api-widget {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.loading::after {
+  content: " …";
+  animation: dots 1s steps(3,end) infinite;
+}
+@keyframes dots {
+  0%{content:" "}
+  33%{content:"."}
+  66%{content:".."}
+  100%{content:"..."}
+}
+/* ===== Error handling & feedback ===== */
+.field-error {
+  display: block;
+  margin-top: .35rem;
+  font-size: .9rem;
+  color: #b91c1c; /* red tone */
+  min-height: 1em;
+}
+input.error, textarea.error { border-color: #fca5a5; }
+
+/* API widget states */
+.api-widget {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.loading::after {
+  content: " …";
+  animation: dots 1s steps(3,end) infinite;
+}
+@keyframes dots {
+  0% { content: " ";}
+  33% { content: ".";}
+  66% { content: "..";}
+  100% { content: "...";}
+}
+
+/* utility, in case not present */
+.hidden { display: none !important; }
