@@ -82,12 +82,19 @@
   // Append name to greeting if available
   function applyGreetingName() {
     if (!greeting) return;
-    const base = greeting.textContent || 'Hello!';
     const nm = localStorage.getItem('username');
-    // ensure only one "name" is appended
-    const baseNoName = base.replace(/\s+[A-Za-z]+!$/, '!');
-    greeting.textContent = nm ? `${baseNoName.slice(0, -1)} ${nm}!` : baseNoName;
+    if (!nm) return; // if no name saved, keep normal greeting
+
+    // keep the full original greeting ("Good morning!" etc.)
+    const current = greeting.textContent || 'Hello!';
+    // if the greeting already includes the name, avoid duplication
+    if (current.includes(nm)) return;
+
+    // remove just the exclamation mark and append name
+    const base = current.replace(/!$/, '');
+    greeting.textContent = `${base}, ${nm}!`;
   }
+
   applyGreetingName();
 
   nameForm?.addEventListener('submit', (e) => {
