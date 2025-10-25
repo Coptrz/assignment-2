@@ -1,25 +1,47 @@
-# Assignment 1 – Foundation & AI Integration
+# 💼 Personal Portfolio – Assignment 2
 
-A simple, responsive personal portfolio that satisfies all requirements for Assignment 1.
+## 🧾 Overview
+This project is my **personal portfolio web application**, created for **Assignment 2** of the Web Development course.  
+It builds on Assignment 1 and introduces **new interactive features**, **data handling**, **animations**, and **AI-assisted improvements**.
 
-##  Features
-- Responsive layout (desktop / tablet / mobile) using CSS Grid & Flexbox
-- Three sections: **About**, **Projects**, **Contact**
-- Interactivity via JavaScript:
-  - **Dark/Light theme toggle** with localStorage
-  - **Greeting by time of day**
-  - **Client-side form validation** (demo submit)
-  - Smooth scrolling (CSS)
-- Accessible: semantic HTML, labels, alt texts, ARIA where appropriate
-- Clean project structure and documentation
+The goal of this project is to demonstrate:
+- Proficiency in modern front-end development (HTML, CSS, JavaScript)
+- The ability to create dynamic, user-friendly web applications
+- Responsible and ethical use of AI tools for coding and learning
 
-##  Projects in this starter
-- **Booking Program** — date selection, guest counts, availability preview.
-- **Food Delivery Solution** — menu browsing, cart preview, and checkout interactions.
+---
+
+## 🌟 Key Features
+### 🧩 Dynamic Content
+- Personalized greeting that changes based on time or a saved username
+- Interactive project list that supports real-time search and filtering
+- Expandable project details with smooth animations
+- Quote widget that fetches random quotes from a public API
+
+### ⚙️ Data Handling
+- User preferences (dark/light theme) stored using **localStorage**
+- Fetches dynamic content using the **Quotable API**
+- Includes loading, retry, and fallback logic for API errors
+- Form validation with inline field messages and animated feedback
+
+### 🎨 Animations & Transitions
+- Smooth fade and slide-in effects when scrolling
+- Hover animations for buttons, links, and cards
+- Animated feedback for form success or error messages
+- Subtle transitions that guide user attention
+
+### 🧠 AI Integration
+- Used **ChatGPT (GPT-5)** to improve coding structure, fix bugs, and enhance user experience
+- AI-assisted documentation writing and design advice
+- Ethical AI use focused on learning and understanding rather than full automation
+
+---
+
+## 🧱 Project Structure
 
 ## 🗂 Structure
 ```
-assignment-1/
+assignment-2/
 ├── README.md
 ├── index.html
 ├── css/
@@ -28,11 +50,9 @@ assignment-1/
 │   └── script.js
 ├── assets/
 │   └── images/
-│       ├── profile-placeholder.svg   (KFUPM logo)
-│       ├── booking.png
-│       └── food-dilevery.png
 ├── docs/
-│   └── ai-usage-report.md
+│   ├── ai-usage-report.md
+│   └── technical-documentation.md
 └── .gitignore
 ```
 
@@ -41,7 +61,7 @@ assignment-1/
 2. Resize the browser or use DevTools to test responsiveness.
 
 ##  Deploy to GitHub Pages
-1. Create a **public repo** named `assignment-1` and push this folder.
+1. Create a **public repo** named `assignment-2` and push this folder.
 2. In the repo page → **Settings** → **Pages**.
 3. Under **Branch**, choose `main` and **/ (root)** → **Save**. 
 4. Add the link to this README and submit it on Blackboard.
