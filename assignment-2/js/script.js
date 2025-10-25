@@ -170,4 +170,49 @@
     });
   });
 })();
+// ===== Public API demo with loading, fallback, and retry =====
+// Uses a simple public endpoint; if it fails, shows a friendly error and a retry button.
+(() => {
+  const statusEl = document.getElementById('apiStatus');
+  const quoteEl = document.getElementById('apiQuote');
+  const retryBtn = document.getElementById('apiRetry');
+
+  if (!statusEl || !quoteEl || !retryBtn) return; // widget not on page
+
+  async function fetchQuote() {
+    // UI: set loading state
+    statusEl.textContent = "Loading a quick quote";
+    statusEl.classList.add('loading');
+    quoteEl.classList.add('hidden');
+    quoteEl.textContent = "";
+
+    try {
+      // fetch with a simple timeout race to avoid hanging forever
+      const controller = new AbortController();
+      const t = setTimeout(() => controller.abort(), 6000);
+
+      // Example public API (can be any safe CORS-enabled API)
+      const res = await fetch('https://api.quotable.io/random', { signal: controller.signal });
+      clearTimeout(t);
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+
+      // UI: success
+      quoteEl.textContent = `“${data.content}” — ${data.author || "Unknown"}`;
+      quoteEl.classList.remove('hidden');
+      statusEl.textContent = "Loaded";
+      statusEl.classList.remove('loading');
+    } catch (err) {
+      // UI: friendly fallback with retry
+      statusEl.textContent = "Couldn't load a quote. Check your connection and click Try another.";
+      statusEl.classList.remove('loading');
+      quoteEl.classList.add('hidden');
+    }
+  }
+
+  // First load + retry handler
+  fetchQuote();
+  retryBtn.addEventListener('click', fetchQuote);
+})();
 
