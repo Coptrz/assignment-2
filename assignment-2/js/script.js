@@ -58,11 +58,15 @@
     if (errors.length) {
       formStatus.textContent = errors.join(' ');
       formStatus.classList.remove('hidden');
+      formStatus.classList.add('status', 'show', 'error');
+      setTimeout(() => formStatus.classList.remove('error'), 400);
       return;
     }
 
     formStatus.textContent = 'Thanks! Your message has been prepared (demo only).';
     formStatus.classList.remove('hidden');
+    formStatus.classList.add('status', 'show', 'success');
+    setTimeout(() => formStatus.classList.remove('success'), 1000);
     form.reset(); // clear fields
   });
 })();
@@ -214,5 +218,24 @@
   // First load + retry handler
   fetchQuote();
   retryBtn.addEventListener('click', fetchQuote);
+})();
+// ===== Reveal on scroll (fade/slide in) =====
+(() => {
+  const items = Array.from(document.querySelectorAll('.reveal'));
+  if (!('IntersectionObserver' in window) || items.length === 0) {
+    // Fallback: show everything if IO not supported
+    items.forEach(el => el.classList.add('in-view'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target); // reveal once
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+  items.forEach(el => io.observe(el));
 })();
 
