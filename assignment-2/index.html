@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+    <!-- Meta information and responsive  setup -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Portfolio – Assignment 1</title>
+    <meta name="description" content="A simple, responsive portfolio for Assignment 1 (Foundation & AI Integration)." />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<!-- ===== Header / Navigation   ===== -->
+<header class="site-header" role="banner">
+    <div class="container navbar" aria-label="Primary navigation">
+        <div class="brand">My Profile<span style="color:var(--primary)">.</span></div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <!-- Theme toggle button -->
+        <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">
+            <span aria-hidden="true">🌓</span><span id="themeLabel">Dark</span>
+        </button>
+    </div>
+</header>
+
+<main>
+    <!-- ===== About Section  ===== -->
+    <section id="about" class="container hero" aria-labelledby="about-title">
+        <div>
+            <span class="tagline" id="greeting" aria-live="polite">Hello!</span>
+            <h1 id="about-title">Hi, I'm Abdulwahab Badirah, <span style="color:var(--primary)">KFUPM Student</span></h1>
+            <p class="muted">Frontend learner & Backend learner.</p>
+            <p>
+                I'm a Computer science student crafting a clean, responsive portfolio as part of Assignment 1.
+                This site demonstrates HTML, CSS, and a bit of JavaScript for interactivity. Using AI assistant to maintain a better structure and learning experience.
+            </p>
+            <div class="cta-row">
+                <a class="button" href="#projects">View Projects</a>
+                <a class="button secondary" href="#contact">Get in Touch</a>
+            </div>
+        </div>
+        <div class="center">
+            <!-- Profile image (KFUPM logo placeholder)  -->
+            <img src="assets/images/profile-placeholder.svg" width="320" height="320" alt="KFUPM logo used as profile image" />
+        </div>
+    </section>
+
+    <!-- ===== Projects Section =====  -->
+    <section id="projects" class="container" aria-labelledby="projects-title">
+        <h2 class="section-title" id="projects-title">Projects</h2>
+        <p class="muted">These projects where developed through courses I took at the University</p>
+        <div class="grid projects-grid">
+            <!-- Project 1 -->
+            <article class="card">
+                <img src="assets/images/booking.png" alt="UI placeholder for the Booking Program project" />
+                <h3>Events Booking Program</h3>
+                <p>A lightweight booking interface that lets users choose dates, set guest counts, and preview availability with a clean, responsive layout.</p>
+            </article>
+            <!-- Project 2 -->
+            <article class="card">
+                <img src="assets/images/food-dilevery.png" alt="UI placeholder for the Food Delivery Solution project" />
+                <h3>Food Delivery Solution</h3>
+                <p>A single-page food ordering flow with menu browsing, cart preview, and checkout interactions designed for mobile-first usage, using figma.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- ===== Contact Section ===== -->
+    <section id="contact" class="container" aria-labelledby="contact-title">
+        <h2 class="section-title" id="contact-title">Contact</h2>
+        <p class="muted">Send to me a quick message. </p>
+        <p class="muted">I am reaching  back within 24 hours period. </p>
+
+        <!-- Contact form (demo only, no backend) -->
+        <form id="contactForm" novalidate aria-describedby="formStatus">
+            <div class="row">
+                <div>
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" placeholder="Your full name" required aria-required="true" />
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" placeholder="you@example.com" required aria-required="true" />
+                </div>
+            </div>
+            <div style="margin-top:1rem;">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="How can I help?" required aria-required="true"></textarea>
+            </div>
+            <div class="cta-row">
+                <button class="button" type="submit">Send Message</button>
+                <span id="formStatus" role="status" class="muted" aria-live="polite"></span>
+            </div>
+        </form>
+    </section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+    <div class="container">
+        <div>&copy; <span id="year"></span> Built for Assignment 1</div>
+    </div>
+</footer>
+
+<!-- JavaScript file (theme toggle, greeting, form validation) -->
+<script src="js/script.js" defer></script>
+</body>
+</html>
