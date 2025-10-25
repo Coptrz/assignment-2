@@ -32,6 +32,13 @@
     <section id="about" class="container hero" aria-labelledby="about-title">
         <div>
             <span class="tagline" id="greeting" aria-live="polite">Hello!</span>
+            <form id="nameForm" class="inline-form" autocomplete="off">
+                <label class="sr-only" for="username">Your name</label>
+                <input id="username" name="username" type="text" placeholder="Type your name…" />
+                <button type="submit" class="button small">Save</button>
+                <span id="nameStatus" class="muted" role="status" aria-live="polite"></span>
+            </form>
+
             <h1 id="about-title">Hi, I'm Abdulwahab Badirah, <span style="color:var(--primary)">KFUPM Student</span></h1>
             <p class="muted">Frontend learner & Backend learner.</p>
             <p>
