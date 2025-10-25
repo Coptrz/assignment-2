@@ -125,15 +125,18 @@
                 <div>
                     <label for="name">Name</label>
                     <input id="name" name="name" type="text" placeholder="Your full name" required aria-required="true" />
+                    <span id="err-name" class="field-error" aria-live="polite"></span>
                 </div>
                 <div>
                     <label for="email">Email</label>
                     <input id="email" name="email" type="email" placeholder="you@example.com" required aria-required="true" />
+                    <span id="err-email" class="field-error" aria-live="polite"></span>
                 </div>
             </div>
             <div style="margin-top:1rem;">
                 <label for="message">Message</label>
                 <textarea id="message" name="message" placeholder="How can I help?" required aria-required="true"></textarea>
+                <span id="err-message" class="field-error" aria-live="polite"></span>
             </div>
             <div class="cta-row">
                 <button class="button" type="submit">Send Message</button>
