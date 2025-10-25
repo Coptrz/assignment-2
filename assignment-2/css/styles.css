@@ -295,3 +295,57 @@ footer.site-footer {
   animation: dots 1s steps(3, end) infinite;
 }
 @keyframes dots { 0% { content: " "; } 33% { content: "."; } 66% { content: ".."; } 100% { content: "..."; } }
+.card { transition: transform .25s ease; }
+.card:hover { transform: translateY(-4px); }
+/* ===== Assignment 2: Animations & Transitions ===== */
+
+/* Avoid header overlap on anchor scroll */
+section { scroll-margin-top: 84px; }
+
+/* Buttons, links, cards: gentle hover */
+.button, nav a, .chip, .link {
+  transition: transform .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.button:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+.card { transition: transform .25s ease, box-shadow .25s ease; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,.10); }
+
+/* Fade/slide-in on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Inline status message animations */
+.status {
+  display: inline-block;
+  min-height: 1.2em;
+  margin-left: .5rem;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+.status.show { opacity: 1; transform: translateY(0); }
+.status.success { animation: pulseSuccess 1s ease; }
+.status.error { animation: shakeError .35s ease; }
+
+@keyframes pulseSuccess {
+  0% { text-shadow: none; }
+  50% { text-shadow: 0 0 8px color-mix(in srgb, var(--primary) 35%, transparent); }
+  100% { text-shadow: none; }
+}
+@keyframes shakeError {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(4px); }
+  30%, 50%, 70% { transform: translateX(-6px); }
+  40%, 60% { transform: translateX(6px); }
+}
+
+/* Optional: subtle image fade-in */
+.card img { transition: opacity .4s ease, transform .4s ease; }
+.card:hover img { transform: scale(1.01); }
