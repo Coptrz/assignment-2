@@ -202,3 +202,76 @@ footer.site-footer {
   form .row { grid-template-columns: 1fr; }
   nav ul { display: none; } /* hide nav links on mobile for simplicity */
 }
+/* ===== Assignment 2: Dynamic UI Enhancements ===== */
+
+/* Controls row (search + chips) */
+.controls {
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: .75rem 0 1rem;
+}
+
+#projectSearch {
+  min-width: 240px;
+  padding: .6rem .8rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Filter chips */
+.chip {
+  padding: .45rem .8rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.chip.is-active {
+  border-color: var(--primary);
+  outline: 2px solid color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+/* Link-styled button for details */
+.link {
+  background: none;
+  border: none;
+  color: var(--primary);
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Collapsible details with smooth transition */
+.details {
+  overflow: hidden;
+  transition: grid-template-rows .3s ease, opacity .3s ease;
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+.details[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+.details > * { overflow: hidden; }
+
+/* Inline name form */
+.inline-form {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  margin: .5rem 0 0;
+}
+.inline-form input { width: 220px; }
+
+.button.small { padding: .45rem .75rem; border-radius: 8px; font-weight: 600; }
+
+/* Visually hidden label for a11y */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,1px,1px); white-space: nowrap; border: 0;
+}
