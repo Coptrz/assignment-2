@@ -66,3 +66,101 @@
     form.reset(); // clear fields
   });
 })();
+// ===== Personalized Greeting (stored username) =====
+(() => {
+  const nameForm = document.getElementById('nameForm');
+  const usernameInput = document.getElementById('username');
+  const nameStatus = document.getElementById('nameStatus');
+  const greeting = document.getElementById('greeting');
+
+  // Load saved name into input
+  const savedName = localStorage.getItem('username');
+  if (savedName && usernameInput) {
+    usernameInput.value = savedName;
+  }
+
+  // Append name to greeting if available
+  function applyGreetingName() {
+    if (!greeting) return;
+    const base = greeting.textContent || 'Hello!';
+    const nm = localStorage.getItem('username');
+    // ensure only one "name" is appended
+    const baseNoName = base.replace(/\s+[A-Za-z]+!$/, '!');
+    greeting.textContent = nm ? `${baseNoName.slice(0, -1)} ${nm}!` : baseNoName;
+  }
+  applyGreetingName();
+
+  nameForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const val = usernameInput?.value.trim();
+    if (!val) {
+      if (nameStatus) nameStatus.textContent = 'Please enter a name.';
+      return;
+    }
+    localStorage.setItem('username', val);
+    if (nameStatus) nameStatus.textContent = 'Saved ✔';
+    applyGreetingName();
+    setTimeout(() => { if (nameStatus) nameStatus.textContent = ''; }, 1600);
+  });
+})();
+// ===== Live Search + Category Filters for Projects =====
+(() => {
+  const search = document.getElementById('projectSearch');
+  const chips = Array.from(document.querySelectorAll('.filters .chip'));
+  const cards = Array.from(document.querySelectorAll('.projects-grid .card'));
+  const emptyState = document.getElementById('emptyState');
+
+  let activeFilter = 'all';
+
+  function visibleByFilter(card) {
+    if (activeFilter === 'all') return true;
+    return (card.getAttribute('data-category') || '').toLowerCase() === activeFilter;
+  }
+
+  function visibleBySearch(card) {
+    const q = (search?.value || '').toLowerCase();
+    return card.textContent.toLowerCase().includes(q);
+  }
+
+  function applyFilters() {
+    let visibleCount = 0;
+    cards.forEach(card => {
+      const show = visibleByFilter(card) && visibleBySearch(card);
+      card.style.display = show ? '' : 'none';
+      if (show) visibleCount++;
+    });
+    if (emptyState) emptyState.classList.toggle('hidden', visibleCount !== 0);
+  }
+
+  // chip clicks
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+      activeFilter = (chip.getAttribute('data-filter') || 'all').toLowerCase();
+      applyFilters();
+    });
+  });
+
+  // live search
+  search?.addEventListener('input', applyFilters);
+
+  // initial paint
+  applyFilters();
+})();
+// ===== Expand/Collapse project details =====
+(() => {
+  const toggles = Array.from(document.querySelectorAll('.toggle-details'));
+  toggles.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const details = btn.nextElementSibling;
+      if (!(details instanceof HTMLElement)) return;
+      const isOpen = details.getAttribute('data-open') === 'true';
+      details.hidden = isOpen;
+      details.setAttribute('data-open', String(!isOpen));
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.textContent = isOpen ? 'Show details' : 'Hide details';
+    });
+  });
+})();
+
