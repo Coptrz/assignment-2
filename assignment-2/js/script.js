@@ -39,36 +39,39 @@
 
   // ===== Contact Form validation (demo only) =====
   form?.addEventListener('submit', (e) => {
-    e.preventDefault(); // prevent actual submission
+    e.preventDefault();
 
-    // Collect field values
-    const name = /** @type {HTMLInputElement} */ (document.getElementById('name'));
-    const email = /** @type {HTMLInputElement} */ (document.getElementById('email'));
-    const message = /** @type {HTMLTextAreaElement} */ (document.getElementById('message'));
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const message = document.getElementById('message');
+
+    // Clear previous errors
+    ['name','email','message'].forEach(id => {
+      document.getElementById(id)?.classList.remove('error');
+      document.getElementById('err-' + id).textContent = '';
+    });
 
     let errors = [];
+    if (!name.value.trim()) { errors.push('Name is required.'); document.getElementById('err-name').textContent = 'Name is required.'; name.classList.add('error'); }
+    if (!email.value.trim()) { errors.push('Email is required.'); document.getElementById('err-email').textContent = 'Email is required.'; email.classList.add('error'); }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { errors.push('Enter a valid email.'); document.getElementById('err-email').textContent = 'Enter a valid email.'; email.classList.add('error'); }
+    if (!message.value.trim()) { errors.push('Message is required.'); document.getElementById('err-message').textContent = 'Message is required.'; message.classList.add('error'); }
 
-    // Basic validation
-    if (!name.value.trim()) errors.push('Name is required.');
-    if (!email.value.trim()) errors.push('Email is required.');
-    else if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email.value)) errors.push('Enter a valid email.');
-    if (!message.value.trim()) errors.push('Message is required.');
-
-    // Display results
     if (errors.length) {
       formStatus.textContent = errors.join(' ');
       formStatus.classList.remove('hidden');
-      formStatus.classList.add('status', 'show', 'error');
+      formStatus.classList.add('status','show','error');
       setTimeout(() => formStatus.classList.remove('error'), 400);
       return;
     }
 
     formStatus.textContent = 'Thanks! Your message has been prepared (demo only).';
     formStatus.classList.remove('hidden');
-    formStatus.classList.add('status', 'show', 'success');
+    formStatus.classList.add('status','show','success');
     setTimeout(() => formStatus.classList.remove('success'), 1000);
-    form.reset(); // clear fields
+    form.reset();
   });
+
 })();
 // ===== Personalized Greeting (stored username) =====
 (() => {
